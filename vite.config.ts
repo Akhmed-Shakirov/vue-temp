@@ -21,7 +21,7 @@ export default defineConfig({
             '@ui': fileURLToPath(new URL('./src/shared/ui', import.meta.url)),
             '@hook': fileURLToPath(new URL('./src/shared/hooks', import.meta.url)),
             '@store': fileURLToPath(new URL('./src/shared/stores', import.meta.url)),
-            '@service': fileURLToPath(new URL('./src/shared/services', import.meta.url))
+            // '@service': fileURLToPath(new URL('./src/shared/services', import.meta.url))
         }
     },
     css: {

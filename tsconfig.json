@@ -6,7 +6,7 @@
             "@ui/*": ["src/shared/ui/*"],
             "@hook/*": ["src/shared/hooks/*"],
             "@store/*": ["src/shared/stores/*"],
-            "@service/*": ["src/shared/services/*"],
+            // "@service/*": ["src/shared/services/*"],
         },
         "target": "ES2020",
         "useDefineForClassFields": true,
