@@ -29,7 +29,6 @@ const useToken = defineStore('token', () => {
         is_auth.value = true
     }
 
-
     const load = () => {
         access_token.value = access.value
         refresh_token.value = refresh.value

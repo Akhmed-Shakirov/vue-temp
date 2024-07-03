@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { checkLogin } from '@/app/middleware/index'
+import middleware from '@/app/middleware/index'
 
 const routes = [
     {
@@ -20,6 +20,8 @@ const router = createRouter({
     routes
 })
 
-router.beforeEach(checkLogin)
+for (const item in middleware) {
+    router.beforeEach(middleware[item])
+}
 
 export default router
