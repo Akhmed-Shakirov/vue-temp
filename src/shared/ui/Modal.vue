@@ -2,7 +2,11 @@
     <teleport to="body">
         <Transition>
             <div class="modal" v-if="modelValue">
-                <form class="modal__content" @submit.prevent="submit" ref="modal" novalidate>
+                <Form
+                    v-model="handler"
+                    class="modal__content"
+                    ref="modal"
+                >
                     <div class="modal__head" v-if="!isHideHead">
 
                     </div>
@@ -13,18 +17,19 @@
                         <Button @click="toggle('cancel')" value="Cansel" />
                         <Button is-submit value="OK" />
                     </div>
-                </form>
+                </Form>
             </div>
         </Transition>
     </teleport>
 </template>
 
 <script setup lang="ts">
-import { Button } from './index.ts'
-import { ref, defineModel, watch } from 'vue'
+import { ref, defineModel } from 'vue'
+import { Button, Form } from './index.ts'
 import { onClickOutside } from '@vueuse/core'
 
 const modelValue = defineModel<boolean>()
+const formHandler = defineModel<any>('formHandler')
 
 const props = defineProps<{
     isHideHead?: boolean
@@ -39,29 +44,26 @@ onClickOutside(modal, (event: any) => {
     if (!!modelValue.value && list?.includes('modal')) modelValue.value = false
 })
 
-watch(modelValue, () => {
-    if (modelValue.value) {
-        // document.body.classList.add('no-scroll')
-    } else {
-        // document.body.classList.remove('no-scroll')
-    }
-})
-
 const emit = defineEmits(['cancel', 'send', 'error'])
 
 const toggle = (type: any) => {
     emit(type)
     modelValue.value = false
 }
-
-const submit = () => {
-    if (!modal.value.checkValidity()) {
-        emit('error')
-        return false
-    } else {
+const handler = ref({
+    send: () => {
         emit('send')
+        if (formHandler.value) {
+            formHandler.value.send()
+        }
+    },
+    error: () => {
+        emit('error')
+        if (formHandler.value) {
+            formHandler.value.error()
+        }
     }
-}
+})
 </script>
 
 <style scoped lang="scss">

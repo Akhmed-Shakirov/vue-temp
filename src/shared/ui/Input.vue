@@ -38,10 +38,10 @@
 </template>
 
 <script setup lang="ts">
-import { Icon, Validator } from './index.ts'
-import { ref, defineModel, computed } from 'vue'
-import { useFindItem } from '@hook/index'
 import { vMaska } from 'maska'
+import { useFindItem } from '@hook/index'
+import { Icon, Validator } from '@ui/index'
+import { ref, defineModel, computed } from 'vue'
 
 const modelValue = defineModel<string | null>()
 
@@ -74,3 +74,4 @@ const types = computed<string>(() => {
 
 <style scoped lang="scss">
 </style>
+@/shared/hook/index

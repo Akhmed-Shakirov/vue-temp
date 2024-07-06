@@ -21,8 +21,8 @@
 </template>
 
 <script setup lang="ts">
-import { Icon, Button } from '@ui/index'
 import Options from './Options.vue'
+import { Icon, Button } from '@ui/index'
 
 import { ref, computed, watch, defineModel } from 'vue'
 import { onClickOutside, useMouseInElement, useWindowSize, watchDebounced } from '@vueuse/core'

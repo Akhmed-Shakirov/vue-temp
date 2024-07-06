@@ -1,7 +1,9 @@
+<template></template>
+
 <script setup lang="ts">
 import { defineModel, watch } from 'vue'
 import { useFindItem } from '@hook/index'
-import { storeToRefs, useStartValidator } from '../stores'
+import { storeToRefs, useStartValidator } from '@store/index'
 const { startValidator, isError } = storeToRefs(useStartValidator())
 
 const modelValue = defineModel<string | null>()
@@ -50,3 +52,5 @@ const checkValue = () => {
     }
 }
 </script>
+@/shared/hook/index
+../store

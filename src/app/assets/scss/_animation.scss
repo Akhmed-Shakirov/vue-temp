@@ -1,0 +1,70 @@
+.animation-flap {
+    display: grid;
+    grid-template-rows: 0fr;
+
+    overflow: hidden;
+    transition: .2s;
+
+    &__show {
+        grid-template-rows: 1fr;
+    }
+}
+@keyframes timer {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0;
+    }
+}
+
+.spin {
+    animation: spin 1s linear 0s infinite;
+}
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+.wave {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: wave 0.5s linear;
+}
+@keyframes wave {
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+
+.v-enter-active,
+.v-leave-active {
+    transition: opacity .1s;
+}
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}
+.list-move,
+.list-enter-active,
+.list-leave-active {
+    transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+}
+.list-leave-active {
+    position: absolute !important;
+}

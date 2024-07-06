@@ -1,19 +1,9 @@
 <template>
-    <Button value="Add Product" />
+    <h1 @click="logout">Good</h1>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { Button } from '@ui/index'
-
-import { useGetQuery } from '@hook/index'
-
-const params = ref<any>({
-    name: 0,
-    age: 22
-})
-
-console.log(useGetQuery(params.value))
+import { logout } from '@/entities/authorization'
 </script>
 
 <style scoped lang="scss">

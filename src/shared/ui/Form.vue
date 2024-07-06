@@ -18,9 +18,15 @@ const submit = () => {
 
     setTimeout(() => {
         if (isError.value) {
-            modelValue.value.error()
+            emit('error')
+            if (modelValue.value) {
+                modelValue.value.error()
+            }
         } else {
-            modelValue.value.send()
+            emit('send')
+            if (modelValue.value) {
+                modelValue.value.send()
+            }
         }
 
         isError.value = false
@@ -36,3 +42,4 @@ form {
 }
 </style>
 
+@/shared/store/index

@@ -35,3 +35,4 @@ const transitions = () => {
 
 <style scoped lang="scss">
 </style>
+@/shared/store/index

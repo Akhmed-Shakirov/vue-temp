@@ -24,8 +24,8 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from './index.ts'
 import { computed } from 'vue'
+import { Icon } from '@ui/index'
 
 const props = defineProps<{
     value?: string

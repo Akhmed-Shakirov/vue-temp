@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from './index.ts'
+import { Icon } from '@ui/index'
 
 import { ref, computed, onMounted, watch } from 'vue'
 import { useDropZone, useFileDialog } from '@vueuse/core'
@@ -51,11 +51,11 @@ const getTypes = computed<string[]>(() => {
 })
 const getFormat = (name: any): string => {
 	let format = name.split('.')?.at(-1)
-	
+
 	if (['doc', 'docx'].includes(format)) format = 'doc'
 
 	if (['jpg', 'jpeg'].includes(format)) format = 'jpg'
-	
+
 	return format
 }
 
@@ -68,26 +68,26 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
 
 const fileValid = (file: any): boolean => {
 	const isValid = getTypes.value?.includes(file?.name?.split('.')?.at(-1))
-	
+
 	if (!isValid) isValidation.value = true
-	
+
 	return isValid
 }
 const setFiles = (event: any) => {
 	isValidation.value = false
-	
+
 	if (props.isDisabled) return
-	
+
 	if (props.limit) {
 		const limit = Number(props.limit) - files.value?.length
 		if (Number(props.limit) <= files.value?.length) return
-		
+
 		for (let i = 0; i < event?.length; i++) {
 			if (i+1 <= limit && fileValid(event[i])) {
 				files.value.push(event[i])
 			}
 		}
-		
+
 		emit('update:modelValue', files.value)
 	} else {
 		if (fileValid(event[0])) {
@@ -104,14 +104,14 @@ const setFiles = (event: any) => {
 			} else {
 				emit('update:modelValue', event[0])
 			}
-			
+
 			files.value = [ event[0] ]
 		}
 	}
 }
 const removeFile = (index: number) => {
 	files.value.splice(index, 1)
-	
+
 	if (props.isGetId) {
 		oldId.value = props.modelValue
 		emit('update:modelValue', null)
@@ -143,12 +143,12 @@ onMounted(() => {
 	if (Array.isArray(props.modelValue)) {
 		files.value = props.modelValue.map(el => ({ ...el, link: el.file, name: decodeURIComponent((el.file ?? el?.name)?.split('/')?.at(-1)).replace(/_/g, ' ') }))
 	}
-	
+
 	if (typeof props.modelValue == 'string') {
 		const array: any = props.modelValue?.split('/')
 		files.value = [ { link: props.modelValue, name: decodeURIComponent(array?.at(-1)).replace(/_/g, ' ') } ]
 	}
-	
+
 	if (props.isGetId && props.file) {
 		files.value = [ { link: props.file, name: decodeURIComponent(props.file?.split('/')?.at(-1)).replace(/_/g, ' ') } ]
 	}
@@ -210,7 +210,7 @@ onChange((files: any) => setFiles(files) )
 			font-style: normal;
 			font-weight: 400;
 		}
-	  
+
 		div {
 			display: flex;
 			align-items: center;
@@ -218,7 +218,7 @@ onChange((files: any) => setFiles(files) )
 			flex: 1 1 auto;
 			cursor: pointer;
 			transition: .2s;
-			
+
 			&:hover {
 				opacity: .5;
 			}
@@ -242,7 +242,7 @@ onChange((files: any) => setFiles(files) )
 		position: absolute;
 		z-index: 1;
 		top: -20px;
-		
+
 		// &:before {
 		// 	top: 8px;
 		// 	left: -2px;
@@ -283,17 +283,17 @@ onChange((files: any) => setFiles(files) )
 		font-style: normal;
 		font-weight: 400;
 	}
-	
+
 	&-error {
 		border: 1px dashed #ff8484;
-		
+
 		.files__type {
 			color: #d74f4f;
 			font-weight: 500;
 			text-decoration-line: underline;
 		}
 	}
-	
+
 	&-disabled, &-disabled:hover {
 		border: 1px dashed rgba(147, 142, 142, 0.66);
 		background: #ececec;

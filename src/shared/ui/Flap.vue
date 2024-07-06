@@ -10,8 +10,8 @@
 </template>
 
 <script setup lang="ts">
-import { Button } from './index.ts'
 import { ref } from 'vue'
+import { Button } from '@ui/index'
 import { onClickOutside } from '@vueuse/core'
 
 const isShow = ref<boolean>(false)

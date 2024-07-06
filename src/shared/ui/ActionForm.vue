@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { Modal, Icon, Button } from './index.ts'
+import { Modal, Icon, Button } from '@ui/index'
 import { defineModel, computed } from 'vue'
 
 const modelValue = defineModel<boolean>()

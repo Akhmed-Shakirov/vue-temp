@@ -1,12 +1,13 @@
 import { useRouter } from 'vue-router'
-import { useToken, storeToRefs } from '@store/index'
+import { useStorage } from '@vueuse/core'
+import { useToken, storeToRefs } from '@/shared/store/index'
 
 const checkLogin = (to: any) => {
+    const router = useRouter()
+    const isAuth = useStorage('is_auth', false)
     const { is_auth } = storeToRefs(useToken())
 
-    const router = useRouter()
-
-    if (to.path !== '/login' && !is_auth.value) {
+    if (to.path !== '/login' && !is_auth.value && !isAuth.value) {
         router.push('/login')
     }
 }

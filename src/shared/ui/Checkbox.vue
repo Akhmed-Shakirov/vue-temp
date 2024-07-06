@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from './index'
+import { Icon } from '@ui/index'
 
 const props = defineProps<{
     active?: boolean

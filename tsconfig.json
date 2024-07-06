@@ -4,8 +4,8 @@
         "paths": {
             "@/*": ["src/*"],
             "@ui/*": ["src/shared/ui/*"],
-            "@hook/*": ["src/shared/hooks/*"],
-            "@store/*": ["src/shared/stores/*"],
+            "@hook/*": ["src/shared/hook/*"],
+            "@store/*": ["src/shared/store/*"],
             // "@service/*": ["src/shared/services/*"],
         },
         "target": "ES2020",

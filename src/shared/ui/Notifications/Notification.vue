@@ -9,9 +9,9 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from '../index'
+import { Icon } from '@ui/index'
 import { watchDebounced } from '@vueuse/core'
-import { useColors, useNotifications } from '../../stores'
+import { useColors, useNotifications } from '@store/index'
 
 const props = defineProps<{
     item: any
@@ -89,3 +89,4 @@ watchDebounced(() => props.timer, () => {
     }
 }
 </style>
+../../store

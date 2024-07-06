@@ -1,21 +1,21 @@
 <template>
-    <div 
-        class="datepicker" 
+    <div
+        class="datepicker"
         ref="datepicker"
         :class="{ 'datepicker__active' : isShow }"
     >
         <Input v-model="value" mask="##.##.####" :label="label" :placeholder="placeholder ?? '__.__.____'" icon="calendar" @icon="toggle" />
-        
+
         <teleport to="body">
             <Transition>
                 <div class="datepicker__body" ref="datepickerOutside" :style="styleObject" v-if="isShow">
                     <Transition mode="out-in">
                         <div class="datepicker__years" v-if="isActive == 1">
-                            <p 
-                                v-for="item in years" 
+                            <p
+                                v-for="item in years"
                                 :key="item"
                                 @click="setYear(item)"
-                                :class="{ 
+                                :class="{
                                     'datepicker__months-active' : item == +year
                                 }"
                             >
@@ -31,11 +31,11 @@
 
                     <Transition mode="out-in">
                         <div class="datepicker__months" v-if="isActive == 2">
-                            <p 
-                                v-for="(item, index) in months" 
+                            <p
+                                v-for="(item, index) in months"
                                 :key="item"
                                 @click="setMonths(index + 1)"
-                                :class="{ 
+                                :class="{
                                     'datepicker__months-active' : index == month
                                 }"
                             >
@@ -48,7 +48,7 @@
                             <Icon icon="chevron-right" @click="incrementDate('months')" />
                         </div>
                     </Transition>
-                    
+
                     <Transition mode="out-in">
                         <div v-if="isActive == 3">
                             <div class="datepicker__weeks">
@@ -57,11 +57,11 @@
                                 </p>
                             </div>
                             <div class="datepicker__days">
-                                <p 
-                                    v-for="item in calendar" 
+                                <p
+                                    v-for="item in calendar"
                                     :key="item"
                                     @click="!item.isDoesntClick ? setDay(item.date) : ''"
-                                    :class="{ 
+                                    :class="{
                                         'datepicker__days-disabled' : item.isDisabled,
                                         'datepicker__days-doesntclick' : item.isDoesntClick,
                                         'datepicker__days-to' : item.date == moment().format('YYYY-MM-DD'),
@@ -85,8 +85,8 @@
 </template>
 
 <script setup lang="ts">
-import { Input, Icon } from './index.ts'
 import moment from 'moment'
+import { Input, Icon } from '@ui/index'
 
 import { ref, computed, watch, defineModel } from 'vue'
 import { onClickOutside, useMouseInElement, useWindowSize, watchDebounced } from '@vueuse/core'
@@ -155,8 +155,8 @@ const years = computed<number[]>(() => {
     let arr: number[] = []
 
     for (let index = 0; index < 4; index++) {
-        arr.push(+year.value - (index + 1))   
-        arr.push(+year.value + (index + 1))      
+        arr.push(+year.value - (index + 1))
+        arr.push(+year.value + (index + 1))
     }
 
     arr.push(+year.value)
@@ -178,12 +178,12 @@ const months = ref<string[]>([
     'Декабрь'
 ])
 const weeks = ref<string[]>([
-    'ПН', 
-    'ВТ', 
-    'СР', 
-    'ЧТ', 
-    'ПТ', 
-    'СБ', 
+    'ПН',
+    'ВТ',
+    'СР',
+    'ЧТ',
+    'ПТ',
+    'СБ',
     'ВС'
 ])
 const calendar = computed<any[]>(() => {
@@ -219,7 +219,7 @@ const calendar = computed<any[]>(() => {
         if (35 > days.length) days = [ ...days, ...data.slice(0, 35 - days.length) ]
         if (days.length > 35) days = [ ...days, ...data.slice(0, 42 - days.length) ]
     }
-    
+
     if (!!props.min || !!props.max || !!props.isMin || !!props.isMax) {
         for (let index = 0; index < days.length; index++) {
             const day = days[index]
@@ -350,7 +350,7 @@ watch(width, () => {
         }
     }
 
-    &__day { 
+    &__day {
         border-bottom: 1px solid transparent;
     }
 
@@ -395,7 +395,7 @@ watch(width, () => {
         &-disabled, &-doesntclick {
             opacity: .5;
         }
-        
+
         &-doesntclick {
             cursor: no-drop !important;
         }
