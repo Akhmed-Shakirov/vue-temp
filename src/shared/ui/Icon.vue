@@ -5,9 +5,10 @@
 
 <script setup lang="ts">
 import { StyleValue, computed } from 'vue'
+import { TIcons } from '@/app/assets/icons'
 
 const props = defineProps<{
-    icon: string
+    icon: TIcons
     deg?: string
 }>()
 
