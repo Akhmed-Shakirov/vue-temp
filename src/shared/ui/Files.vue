@@ -19,7 +19,7 @@
 	<div class="files__items" v-if="files?.length">
 		<div class="files__item" v-for="(item, index) in files" :key="item">
 			<div @click="item?.link && downloadFile(item?.link, item?.name)">
-				<Icon :icon="`${getFormat(item?.name)}.svg`" class="type" />
+				<img :src="`/icons/images/${getFormat(item?.name)}.svg`" class="type" />
 				<p>{{ item?.name }}</p>
 			</div>
 			<Icon icon="trash" class="trash" @click="removeFile(index)" />

@@ -89,4 +89,3 @@ watchDebounced(() => props.timer, () => {
     }
 }
 </style>
-../../store

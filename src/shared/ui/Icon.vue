@@ -1,6 +1,5 @@
 <template>
-    <i :class="[icon, deg]" class="icon" :style="styleObject" v-if="!icon.includes('.')" />
-    <img :class="[deg]" class="icon img" :src="`/icons/images/${icon}`" :alt="icon" v-else>
+    <i :class="[icon, deg]" class="icon" :style="styleObject" />
 </template>
 
 <script setup lang="ts">

@@ -24,11 +24,12 @@
 <script setup lang="ts">
 import { Modal, Icon, Button } from '@ui/index'
 import { defineModel, computed } from 'vue'
+import { TIcons } from '@/app/assets/icons'
 
 const modelValue = defineModel<boolean>()
 
 const props = defineProps<{
-    icon?: string
+    icon?: TIcons
     title?: string
     description?: string
     actions?: string

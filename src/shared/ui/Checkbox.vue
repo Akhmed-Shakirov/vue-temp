@@ -1,6 +1,6 @@
 <template>
     <div class="checkbox">
-        <Icon :icon="active ? 'check' : ''" />
+        <Icon icon="check" v-if="active" />
     </div>
 </template>
 

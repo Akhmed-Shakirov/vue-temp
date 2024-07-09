@@ -3,7 +3,8 @@
         class="field"
         :class="{
             'field-icon' : icon,
-            'field__error': errorText
+            'field__error': errorText,
+            'loading': isLoading
         }"
     >
         <label class="field__label" v-if="label">
@@ -42,19 +43,21 @@ import { vMaska } from 'maska'
 import { useFindItem } from '@hook/index'
 import { Icon, Validator } from '@ui/index'
 import { ref, defineModel, computed } from 'vue'
+import { TIcons } from '@/app/assets/icons'
 
 const modelValue = defineModel<string | null>()
 
 const emit = defineEmits(['icon', 'enter'])
 
 const props = withDefaults(defineProps<{
-    icon?: string
+    icon?: TIcons
     label?: string
     placeholder?: string
     validator?: string[]
     name?: string
     type?: string
     mask?: string
+    isLoading?: boolean
 }>(), {
     validator: () => []
 })
@@ -74,4 +77,3 @@ const types = computed<string>(() => {
 
 <style scoped lang="scss">
 </style>
-@/shared/hook/index

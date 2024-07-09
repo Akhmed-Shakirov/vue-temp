@@ -52,5 +52,3 @@ const checkValue = () => {
     }
 }
 </script>
-@/shared/hook/index
-../store

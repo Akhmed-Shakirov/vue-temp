@@ -5,12 +5,14 @@
             'button__gray': isGray,
             'button__blue': isBlue,
             'button__red': isRed,
+            'button__loading': isLoading,
         }"
         :type="isSubmit ? 'submit' : 'button'"
-        :disabled="isDisabled"
+        :disabled="isDisabled || isLoading"
         @click="applyWaveEffect"
     >
-        <Icon :icon="icon" v-if="icon" />
+        <Icon icon="loader" class="spin" v-if="isLoading" />
+        <Icon :icon="icon" v-else-if="icon" />
 
         <template v-if="value">
             {{ $t(value ?? '') }}
@@ -26,17 +28,19 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { Icon } from '@ui/index'
+import { TIcons } from '@/app/assets/icons'
 
 const props = defineProps<{
     value?: string
-    icon?: string
-    iconR?: string
+    color?: string
+    icon?: TIcons
+    iconR?: TIcons
     isSubmit?: boolean
     isDisabled?: boolean
     isGray?: boolean
     isBlue?: boolean
     isRed?: boolean
-    color?: string
+    isLoading?: boolean
 }>()
 
 const getColor = computed<string>(() => {
@@ -124,11 +128,15 @@ const applyWaveEffect = (event: any) => {
     }
 
     &:disabled {
+        opacity: .7;
         cursor: no-drop;
 
         &:hover {
             border-color: transparent;
         }
+    }
+
+    &__loading {
     }
 }
 </style>

@@ -30,4 +30,3 @@ props
     gap: 16px;
 }
 </style>
-@/shared/store/index
