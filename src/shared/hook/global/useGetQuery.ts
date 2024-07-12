@@ -1,5 +1,5 @@
 // Cозадет Query параметр
-const useGetQuery = (obj: any, isEmpty?: boolean): any => {
+export const useGetQuery = (obj: any, isEmpty?: boolean): any => {
     let url = ''
 
     const ownKeys = Object.keys(obj).filter(key => obj.hasOwnProperty(key))
@@ -13,4 +13,4 @@ const useGetQuery = (obj: any, isEmpty?: boolean): any => {
     return url
 }
 
-export default useGetQuery
+// export default useGetQuery

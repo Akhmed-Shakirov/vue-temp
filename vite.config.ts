@@ -2,9 +2,25 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import VueMacros from 'unplugin-vue-macros'
+import AutoImport from 'unplugin-auto-import/vite'
 
 export default defineConfig({
     plugins: [
+        AutoImport({
+            imports: [
+                'vue',
+                'vue-router'
+            ],
+            dts: 'src/auto-imports.d.ts',
+            dirs: [
+                './src/shared/hook/global'
+            ],
+            eslintrc: {
+                enabled: true,
+                filepath: './.eslintrc-auto-import.json',
+                globalsPropValue: true,
+            }
+        }),
         VueMacros.vite({
             plugins: {
                 vue: vue({

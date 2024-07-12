@@ -1,5 +1,5 @@
 // Проверки на не пустoту
-const useIsNotEmpty = (obj: any): boolean => {
+export const useIsNotEmpty = (obj: any): boolean => {
     const ownKeys = Object.keys(obj).filter(key => obj.hasOwnProperty(key))
 
     for (const key of ownKeys) {
@@ -14,5 +14,3 @@ const useIsNotEmpty = (obj: any): boolean => {
 
     return false
 }
-
-export default useIsNotEmpty

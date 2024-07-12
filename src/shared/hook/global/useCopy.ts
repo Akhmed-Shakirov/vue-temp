@@ -1,5 +1,5 @@
 // Глубокое копирование объекта
-const useCopy = (data: any): any => {
+export const useCopy = (data: any): any => {
     const item: any = {}
 
     const deepCopy = (source: any, target: any) => {
@@ -21,4 +21,3 @@ const useCopy = (data: any): any => {
     return item
 }
 
-export default useCopy

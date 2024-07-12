@@ -10,7 +10,6 @@
 import { Notifications } from '@ui/index'
 import { useToken } from '@store/index'
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useTitle } from '@vueuse/core'
 

@@ -1,6 +1,5 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { useRouter } from 'vue-router'
 import { useStorage } from '@vueuse/core'
 
 const useToken = defineStore('token', () => {

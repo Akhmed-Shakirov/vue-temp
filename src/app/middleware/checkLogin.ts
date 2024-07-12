@@ -1,4 +1,3 @@
-import { useRouter } from 'vue-router'
 import { useStorage } from '@vueuse/core'
 import { useToken, storeToRefs } from '@/shared/store/index'
 

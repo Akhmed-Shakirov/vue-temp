@@ -1,5 +1,5 @@
 // Вывода не пустых ключей объекта
-const useNotEmpty = (obj: any): any => {
+export const useNotEmpty = (obj: any): any => {
     let newObj: any = {}
 
     const ownKeys = Object.keys(obj).filter(key => obj.hasOwnProperty(key))
@@ -20,5 +20,3 @@ const useNotEmpty = (obj: any): any => {
 
     return newObj
 }
-
-export default useNotEmpty

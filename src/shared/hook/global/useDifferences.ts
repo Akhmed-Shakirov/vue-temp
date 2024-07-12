@@ -1,5 +1,5 @@
 // Разница объектов
-const useDifferences = (main: any, obj: any): any => {
+export const useDifferences = (main: any, obj: any): any => {
     const differences: any = {}
 
     for (const key in main) {
@@ -17,5 +17,3 @@ const useDifferences = (main: any, obj: any): any => {
 
     return differences
 }
-
-export default useDifferences

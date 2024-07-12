@@ -5,13 +5,13 @@
             'button__gray': isGray,
             'button__blue': isBlue,
             'button__red': isRed,
-            'button__loading': isLoading,
+            'button__loading': isLoading || isLocalLoading,
         }"
         :type="isSubmit ? 'submit' : 'button'"
-        :disabled="isDisabled || isLoading"
+        :disabled="isDisabled || isLoading || isLocalLoading"
         @click="applyWaveEffect"
     >
-        <Icon icon="loader" class="spin" v-if="isLoading" />
+        <Icon icon="loader" class="spin" v-if="isLoading || isLocalLoading" />
         <Icon :icon="icon" v-else-if="icon" />
 
         <template v-if="value">
@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { Icon } from '@ui/index'
 import { TIcons } from '@/app/assets/icons'
 
@@ -47,7 +47,9 @@ const getColor = computed<string>(() => {
     return props.color ? `button__${props.color}` : ''
 })
 
-const applyWaveEffect = (event: any) => {
+const isLocalLoading = ref<boolean>(false)
+
+const applyWaveEffect = async (event: any) => {
     const button = event.currentTarget
     const ripple = document.createElement('span')
     const diameter = Math.max(button.clientWidth, button.clientHeight)

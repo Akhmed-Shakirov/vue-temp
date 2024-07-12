@@ -1,5 +1,5 @@
 // Отчистки объекта
-const useClears = (obj: any) => {
+export const useClears = (obj: any) => {
     if (!obj) return {}
 
     const ownKeys = Object.keys(obj).filter(key => obj.hasOwnProperty(key))
@@ -14,5 +14,3 @@ const useClears = (obj: any) => {
 
     return obj
 }
-
-export default useClears
