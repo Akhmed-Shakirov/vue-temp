@@ -44,7 +44,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
 import { Checkbox, Icon } from '@ui/index'
 
 const modelValue = defineModel<any>()

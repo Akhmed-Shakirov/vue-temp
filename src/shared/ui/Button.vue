@@ -26,7 +26,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
 import { Icon } from '@ui/index'
 import { TIcons } from '@/app/assets/icons'
 

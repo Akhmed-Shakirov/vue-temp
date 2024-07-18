@@ -1,5 +1,5 @@
 <template>
-    <div class="notification" :class="`notification__${getColor(item?.value)}`">
+    <div class="notification" :class="`notification__${getColor(item?.type)}`">
         <Icon icon="circle-information" />
         <p>{{ item?.text }}</p>
         <Icon icon="xmark" @click="removeNotification(item?.id)" />

@@ -76,6 +76,16 @@
     "useRoute": true,
     "useRouter": true,
     "useFetchNew": true,
-    "useServiceNew": true
+    "useServiceNew": true,
+    "useFetchNe": true,
+    "useFetch": true,
+    "useServiceNe": true,
+    "useServiceN": true,
+    "useService": true,
+    "User": true,
+    "Service": true,
+    "useRouterQuery": true,
+    "useFileLink": true,
+    "useFindItem": true
   }
 }

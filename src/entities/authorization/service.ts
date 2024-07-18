@@ -9,7 +9,7 @@ const setup = () => {
         if (item.login == 'admin' && item.password == '123') {
             setData('access', 'refresh', true)
         } else {
-            setNotification({ value: 'danger', text: 'Login or password is incorrect!' })
+            setNotification({ type: 'danger', text: 'Login or password is incorrect!' })
         }
     }
 

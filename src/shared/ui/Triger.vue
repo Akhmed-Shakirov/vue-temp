@@ -7,8 +7,6 @@
 
 <script setup lang="ts">
 import { Icon } from '@ui/index'
-
-import { ref, watch } from 'vue'
 import { useInfiniteScroll } from '@vueuse/core'
 
 const props = defineProps<{

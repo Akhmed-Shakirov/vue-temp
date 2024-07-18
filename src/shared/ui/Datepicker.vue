@@ -87,8 +87,6 @@
 <script setup lang="ts">
 import moment from 'moment'
 import { Input, Icon } from '@ui/index'
-
-import { ref, computed, watch, defineModel } from 'vue'
 import { onClickOutside, useMouseInElement, useWindowSize, watchDebounced } from '@vueuse/core'
 
 const props = defineProps<{

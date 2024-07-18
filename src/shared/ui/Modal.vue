@@ -24,7 +24,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineModel } from 'vue'
 import { Button, Form } from './index.ts'
 import { onClickOutside } from '@vueuse/core'
 

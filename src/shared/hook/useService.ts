@@ -1,68 +1,63 @@
-import { ref } from 'vue'
-import { useFetch } from './index'
+import { watchDebounced } from "@vueuse/core"
 
-const findDifferences = (obj1: any, obj2: any): any => {
-    const differences: any = {}
+export const useService = (api: string, fetchConfig?: { isStopRead?: boolean, filterTimer?: number }) => {
 
-    for (const key in obj2) {
-        if (obj1[key] !== obj2[key]) differences[key] = obj2[key]
-    }
-
-    return differences
-}
-
-
-const useService = (api: string | any[], method: string = 'GET', helper?: { state?: any, item?: any, old_item?: any } | null): any => {
-    const data = ref<any>(helper?.state?.data ?? [])
+    const data = ref<any>([])
     const isLoading = ref<boolean>(false)
-    const isError = ref<boolean>(false)
+    const error = ref<any>({})
+    const item = ref<any>({})
+    const filter = ref<any>(useRouterQuery({}))
 
-    method = method.toLocaleUpperCase()
-
-    if (!['GET', 'HEAD'].includes(method)) {
-        if (method == 'POST' && helper?.item?.id) delete helper?.item?.id
-
-        if (method !== 'POST') api = api + `/${helper?.item?.id ? helper?.item?.id : ''}`
-    }
-
-    const fetchData = async () => {
+    const fetch = async (method: [string, any?], event?: any) => {
         try {
             isLoading.value = true
-            let item: any = helper?.item
+            const field = useIsNotEmpty(event) ? event : item.value
 
-            if (method == 'PATCH' && Object.keys(helper?.old_item)?.length) {
-                item = findDifferences(helper?.old_item, helper?.item)
-                console.log(item)
+            if (method[0] == 'post') {
+                delete field?.id
+                data.value.push(await useFetch(api, method, useNotEmpty(field)))
             }
 
-            let result = await useFetch(api, method, item)
-
-            if (method == 'POST') {
-                data.value = [result, ...data.value]
+            if (method[0] == 'get') {
+                data.value = await useFetch([api, filter.value], method)
             }
 
-            if (method == 'GET') {
-                data.value = result
+            if (method[0] == 'patch' && field?.id) {
+                const index = data.value.findIndex((el: any) => el?.id == field?.id)
+                const old = data.value.find((el: any) => el?.id == field?.id)
+                data.value.splice(index, 1, await useFetch(`${api}/${field?.id}`, method, useDifferences(useNotEmpty(field), old)))
             }
 
-            if (['PUT', 'PATCH'].includes(method)) {
-                const index = data.value.findIndex((el: any) => el?.id === +item?.id)
-                data.value.splice(index, 1, result)
+            if (method[0] == 'delete' && field?.id) {
+                await useFetch(`${api}/${field?.id}`, method)
+                data.value = data.value.filter((el: any) => el?.id !== field?.id)
             }
-
-            if (method == 'DELETE') {
-                data.value = data.value.filter((el: any) => el?.id !== +item?.id)
-            }
-        } catch (error) {
-            isError.value = true
+        } catch (err) {
+            error.value = err
         } finally {
             isLoading.value = false
         }
     }
 
-    fetchData()
+    if (!fetchConfig?.isStopRead) {
+        fetch(['get'])
+    }
 
-    return { data, isLoading, isError }
+    watchDebounced(filter, () => {
+        fetch(['get'])
+    }, { debounce: (fetchConfig?.filterTimer ?? 1000), maxWait: 5000, deep: true })
+
+    return {
+        data,
+        isLoading,
+        error,
+        item,
+        filter,
+
+        create: (event?: any, success?: string) =>  fetch(['post', success], event),
+        read: (event?: any, success?: string) => fetch(['get', success], event),
+        update: (event?: any, success?: string) =>  fetch(['patch', success], event),
+        remove: (event?: any, success?: string) =>  fetch(['delete', success], event)
+    }
 }
 
-export default useService

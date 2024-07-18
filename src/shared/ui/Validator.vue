@@ -1,16 +1,15 @@
 <template></template>
 
 <script setup lang="ts">
-import { defineModel, watch } from 'vue'
-import { useFindItem } from '@hook/index'
-import { storeToRefs, useStartValidator } from '@store/index'
-const { startValidator, isError } = storeToRefs(useStartValidator())
+import { storeToRefs, useValidator } from '@store/index'
+const { startValidator, isError } = storeToRefs(useValidator())
 
-const modelValue = defineModel<string | null>()
+const modelValue = defineModel<string | number | null>()
 const errorText = defineModel<string>('errorText')
 
 const props = defineProps<{
     validator: string[]
+    type: string
 }>()
 
 const emit = defineEmits(['validate'])
@@ -32,22 +31,24 @@ const checkValue = () => {
         isError.value = true
     }
 
-    if (modelValue.value && max && modelValue.value?.length > +max) {
-        errorText.value = 'Max length ' + max
-        isError.value = true
-    }
-
-    if (modelValue.value && min && modelValue.value?.length < +min) {
-        errorText.value = 'Min length ' + min
-        isError.value = true
-    }
-
-    if (email) {
-        const split = modelValue.value?.split('@')
-
-        if (!modelValue.value?.includes('@') || split && (split.length < 2 || !split[1]) ) {
-            errorText.value = 'This is Email'
+    if (props.type !== 'number' && typeof modelValue.value !== 'number') {
+        if (modelValue.value && max && modelValue.value?.length > +max) {
+            errorText.value = 'Max length ' + max
             isError.value = true
+        }
+
+        if (modelValue.value && min && modelValue.value?.length < +min) {
+            errorText.value = 'Min length ' + min
+            isError.value = true
+        }
+
+        if (email) {
+            const split = modelValue.value?.split('@')
+
+            if (!modelValue.value?.includes('@') || split && (split.length < 2 || !split[1]) ) {
+                errorText.value = 'This is Email'
+                isError.value = true
+            }
         }
     }
 }

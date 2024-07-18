@@ -20,7 +20,7 @@
                             {{ itemKeys?.name }}
                         </th>
                     </tr>
-                    
+
                     <tr class="tables__tr">
                         <template v-for="key in names" :key="key?.name">
                             <th class="tables__th">
@@ -30,9 +30,9 @@
                     </tr>
 
                     <template v-for="(item, index) in data" :key="index">
-                        <tr 
-                            class="tables__tr tables__tr-hover" 
-                            :class="{ 'tables__tr-active' : index + 1 == active }" 
+                        <tr
+                            class="tables__tr tables__tr-hover"
+                            :class="{ 'tables__tr-active' : index + 1 == active }"
                             @click="active = index + 1"
                         >
                             <td class="tables__td" v-for="key in names" :key="key?.name">
@@ -67,7 +67,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
 
 const isFull = ref<boolean>(false)
 const isPadding = ref<boolean>(false)
@@ -227,7 +226,7 @@ const keys = ref<any[]>([
     // { name: 'numberrange', title: 'Рейтинг' },
     // { name: 'currency', title: 'Стоимость' },
     // { name: 'alphanumeric', title: 'Артикул' },
-    
+
 
     {
         name: 'Основное',
@@ -236,7 +235,7 @@ const keys = ref<any[]>([
             { name: 'phone', title: 'Телефон' },
             { name: 'email', title: 'Почта' },
         ]
-    }, 
+    },
     {
         name: 'Место',
         children: [
@@ -245,7 +244,7 @@ const keys = ref<any[]>([
             { name: 'region', title: 'Регион' },
             { name: 'country', title: 'Страна' },
         ]
-    }, 
+    },
     {
         name: 'Описание',
         children: [
@@ -277,12 +276,12 @@ const names = computed<any[]>(() => {
     border-radius: 5px;
     border: 1px solid #606060;
     background-color: #1a1a1a;
-    
+
     &__haed, &__footer {
         display: flex;
         flex-direction: column;
     }
-    
+
     &__block {
         display: flex;
         align-items: center;
@@ -290,7 +289,7 @@ const names = computed<any[]>(() => {
         gap: 16px;
 
         border-bottom: 1px solid #606060;
-        
+
         h3 {
             font-size: 16px;
         }
@@ -299,7 +298,7 @@ const names = computed<any[]>(() => {
             border-bottom: none;
         }
     }
-    
+
     &__haed {
         border-bottom: 1px solid #606060;
     }
@@ -316,7 +315,7 @@ const names = computed<any[]>(() => {
         width: max-content;
         border-spacing: 0;
         border-bottom: 1px solid #606060;
-        
+
         tr > td, th {
             border-top: 1px solid #606060;
             border-right: 1px solid #606060;
@@ -355,7 +354,7 @@ const names = computed<any[]>(() => {
             text-transform: uppercase;
         }
     }
-    
+
     &-padding {
         .tables__haed {
             border-bottom: none;

@@ -16,7 +16,7 @@
             v-model="modelValue"
             :type="types || 'text'"
             :placeholder="placeholder ?? 'Enter data...'"
-            @keyup.enter="$emit('enter')"
+            @keyup.enter="$emit('enter', modelValue)"
             v-maska:[masks]
         >
 
@@ -34,18 +34,17 @@
             v-model="modelValue"
             v-model:errorText="errorText"
             :validator="validator"
+            :type="types || 'text'"
         />
     </div>
 </template>
 
 <script setup lang="ts">
 import { vMaska } from 'maska'
-import { useFindItem } from '@hook/index'
 import { Icon, Validator } from '@ui/index'
-import { ref, defineModel, computed } from 'vue'
 import { TIcons } from '@/app/assets/icons'
 
-const modelValue = defineModel<string | null>()
+const modelValue = defineModel<string | number | null>()
 
 const emit = defineEmits(['icon', 'enter'])
 

@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { StyleValue, computed } from 'vue'
+import { StyleValue } from 'vue'
 import { TIcons } from '@/app/assets/icons'
 
 const props = defineProps<{

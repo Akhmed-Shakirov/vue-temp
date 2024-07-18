@@ -1,5 +1,5 @@
 export { default as useToken } from './token.ts'
 export { default as useColors } from './colors.ts'
 export { default as useNotifications } from './notifications.ts'
-export { default as useStartValidator } from './startValidator.ts'
+export { default as useValidator } from './validator.ts'
 export { storeToRefs } from 'pinia'

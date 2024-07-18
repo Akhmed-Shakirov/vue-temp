@@ -29,8 +29,6 @@
 
 <script setup lang="ts">
 import { Icon } from '@ui/index'
-
-import { ref, computed, onMounted, watch } from 'vue'
 import { useDropZone, useFileDialog } from '@vueuse/core'
 
 const props = defineProps<{

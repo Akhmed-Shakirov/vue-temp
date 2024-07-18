@@ -1,4 +1,4 @@
-const useFindItem = (value: string, arr: any[]): string => {
+export const useFindItem = (value: string, arr: any[]): string => {
     const item = arr.find((item: string) => item.startsWith(value)) ?? ''
     const split = item ? item.split('-')[1] : ''
 
@@ -6,5 +6,3 @@ const useFindItem = (value: string, arr: any[]): string => {
 
     return item
 }
-
-export default useFindItem

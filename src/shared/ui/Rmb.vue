@@ -10,7 +10,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { watchDebounced } from '@vueuse/core'
 
 const isShow = ref<boolean>(false)
@@ -31,13 +30,13 @@ const contextmenu = (event: any) => {
 
 document.addEventListener('contextmenu', () => {
     if (isTimer.value == true) {
-        isShow.value = false 
+        isShow.value = false
     }
 })
 
 document.addEventListener('click', () => {
     if (isShow.value == true) {
-        isShow.value = false 
+        isShow.value = false
     }
 })
 

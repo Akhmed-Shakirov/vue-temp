@@ -5,9 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import { defineModel } from 'vue'
-import { storeToRefs, useStartValidator } from '@store/index'
-const { startValidator, isError } = storeToRefs(useStartValidator())
+import { storeToRefs, useValidator } from '@store/index'
+const { startValidator, isError } = storeToRefs(useValidator())
 
 const modelValue = defineModel<any>()
 

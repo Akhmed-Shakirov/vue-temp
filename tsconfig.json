@@ -4,7 +4,6 @@
         "paths": {
             "@/*": ["src/*"],
             "@ui/*": ["src/shared/ui/*"],
-            "@hook/*": ["src/shared/hook/*"],
             "@store/*": ["src/shared/store/*"],
             // "@service/*": ["src/shared/services/*"],
         },

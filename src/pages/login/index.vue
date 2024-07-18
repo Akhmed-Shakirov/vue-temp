@@ -17,7 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Input, Form, Button } from '@ui/index'
 import { TAuch, login } from '@/entities/authorization'
 

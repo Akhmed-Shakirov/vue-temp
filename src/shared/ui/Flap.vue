@@ -10,7 +10,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Button } from '@ui/index'
 import { onClickOutside } from '@vueuse/core'
 
