@@ -7,8 +7,18 @@
     },
     {
       "id": 2,
-      "name": "Max",
+      "name": "Tom",
       "age": 23
+    },
+    {
+      "name": "Max",
+      "age": 22,
+      "id": 3
+    },
+    {
+      "name": "Alex",
+      "age": 24,
+      "id": 4
     }
   ],
   "status": [
