@@ -5,7 +5,6 @@
             'button__gray': isGray,
             'button__blue': isBlue,
             'button__red': isRed,
-            'button__loading': isLoading || isLocalLoading,
         }"
         :type="isSubmit ? 'submit' : 'button'"
         :disabled="isDisabled || isLoading || isLocalLoading"
@@ -135,9 +134,6 @@ const applyWaveEffect = async (event: any) => {
         &:hover {
             border-color: transparent;
         }
-    }
-
-    &__loading {
     }
 }
 </style>
