@@ -5,7 +5,7 @@
             <div class="d-flex j-center">
                 <Button value="Logout" is-red @click="logout" />
             </div>
-            <h3 class="title">From</h3>
+            <h3 class="title">Form</h3>
             <div class="d-flex j-center">
                 <Input v-model="api.item.name" placeholder="Name" />
                 <Input v-model="api.item.age" placeholder="Age" type="number" />
