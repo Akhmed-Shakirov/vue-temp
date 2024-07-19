@@ -32,7 +32,7 @@
                 <Button value="Filter clear" @click="api.filter = {}" />
             </div>
         </div>
-        <div style="width: 400px;">
+        <div style="width: 400px">
             <h3 class="title">Fetch</h3>
             <pre class="pre">{{ api.isLoading ? 'Loading...' : api.data }}</pre>
         </div>
